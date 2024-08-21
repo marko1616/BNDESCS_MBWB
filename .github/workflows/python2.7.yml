@@ -1,0 +1,29 @@
+name: Python 2.7 Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run_python_2:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 使用GitHub的checkout动作来检出代码
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      # 设置 Python 2.7 环境
+      - name: Set up Python 2.7
+        uses: actions/setup-python@v4
+        with:
+          python-version: 2.7
+
+      # 执行 Python 2.7 脚本
+      - name: Building project
+        run: |
+          sh build_module.sh
